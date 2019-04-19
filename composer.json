@@ -1,0 +1,28 @@
+{
+    "name": "rixafy/translation",
+    "description": "Entity translation system for Doctrine ORM",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rixafy",
+            "email": "rixafy@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "doctrine/orm": "2.7.x-dev",
+        "ramsey/uuid-doctrine": "dev-master",
+        "rixafy/language": "dev-master"
+    },
+    "autoload": {
+        "psr-4": {
+            "Rixafy\\Translation\\": "src"
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "7.3"
+        }
+    }
+}
