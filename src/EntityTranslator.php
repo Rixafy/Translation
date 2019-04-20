@@ -21,7 +21,7 @@ use Rixafy\Translation\Exception\TranslationNotFoundException;
 abstract class EntityTranslator
 {
     /**
-     * @ORM\ManyToOne(targetEntity="\Rixafy\Language\Language\Language", inversedBy="entity")
+     * @ORM\ManyToOne(targetEntity="\Rixafy\Language\Language", inversedBy="entity")
      * @var Language
      */
     protected $fallback_language;
