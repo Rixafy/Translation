@@ -12,7 +12,7 @@ class TranslationConfig
 	/** @var LanguageProvider */
 	private $languageProvider;
 
-	private function __construct(LanguageProvider $languageProvider)
+	public function __construct(LanguageProvider $languageProvider)
 	{
 		$this->languageProvider = $languageProvider;
 	}
