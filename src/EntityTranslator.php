@@ -168,7 +168,7 @@ abstract class EntityTranslator
             ->where(Criteria::expr()->eq('language', $language))
             ->setMaxResults(1);
 
-		return $tmp = $this->translations->matching($criteria)->first() === false ? null : $tmp;
+		return ($tmp = $this->translations->matching($criteria)->first()) === false ? null : $tmp;
     }
 
     private function updateTranslationFields($dataObject, $translation): void
