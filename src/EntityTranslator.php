@@ -24,7 +24,7 @@ abstract class EntityTranslator
      * @ORM\ManyToOne(targetEntity="\Rixafy\Language\Language", inversedBy="entity")
      * @var Language
      */
-    protected $fallback_language;
+    protected $fallbackLanguage;
 
     /** @var object */
     protected $translation;
@@ -53,11 +53,11 @@ abstract class EntityTranslator
 
             if (!$this->translation) {
                 $criteria = Criteria::create()
-                    ->where(Criteria::expr()->eq('language', $this->fallback_language))
+                    ->where(Criteria::expr()->eq('language', $this->fallbackLanguage))
                     ->setMaxResults(1);
 
                 $this->translation = $this->translations->matching($criteria)->first();
-                $this->translationLanguage = $this->fallback_language;
+                $this->translationLanguage = $this->fallbackLanguage;
             }
         }
 
@@ -98,8 +98,8 @@ abstract class EntityTranslator
 
         $this->translations->add($translation);
 
-        if ($this->fallback_language === null) {
-            $this->fallback_language = $language;
+        if ($this->fallbackLanguage === null) {
+            $this->fallbackLanguage = $language;
         }
 
         return $translation;
@@ -123,8 +123,8 @@ abstract class EntityTranslator
             }
 
         } else {
-            if ($this->fallback_language === null) {
-                $this->fallback_language = $language;
+            if ($this->fallbackLanguage === null) {
+                $this->fallbackLanguage = $language;
                 $this->translation = $this->addTranslation($dataObject, $language);
                 $this->translationLanguage = $language;
                 try {
@@ -186,6 +186,7 @@ abstract class EntityTranslator
                         continue;
                     }
 
+                    // Keep this for snake_case compatibility until next release
                     $camelKey = lcfirst(str_replace('_', '', ucwords($propertyName, '_')));
                     if (isset($dataObject->{$camelKey})) {
                         $value = $dataObject->{$camelKey};
