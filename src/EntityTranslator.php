@@ -171,7 +171,7 @@ abstract class EntityTranslator
 		return ($tmp = $this->translations->matching($criteria)->first()) === false ? null : $tmp;
     }
 
-    private function updateTranslationFields(object $dataObject, $translation): void
+    private function updateTranslationFields(object $dataObject, object $translation): void
     {
         if (method_exists($translation, 'edit')) {
             $translation->edit($dataObject);
