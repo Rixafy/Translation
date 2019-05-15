@@ -91,7 +91,7 @@ abstract class EntityTranslator
         }
     }
 
-    public function addTranslation($dataObject, Language $language)
+    public function addTranslation(object $dataObject, Language $language)
     {
         $class = get_class($this) . 'Translation';
         $translation = new $class($dataObject, $language, $this);
@@ -105,7 +105,7 @@ abstract class EntityTranslator
         return $translation;
     }
 
-    public function editTranslation($dataObject, Language $language = null)
+    public function editTranslation(object $dataObject, Language $language = null)
     {
         if ($language === null && isset($dataObject->language)) {
             $language = $dataObject->language;
@@ -171,7 +171,7 @@ abstract class EntityTranslator
 		return ($tmp = $this->translations->matching($criteria)->first()) === false ? null : $tmp;
     }
 
-    private function updateTranslationFields($dataObject, $translation): void
+    private function updateTranslationFields(object $dataObject, $translation): void
     {
         if (method_exists($translation, 'edit')) {
             $translation->edit($dataObject);
