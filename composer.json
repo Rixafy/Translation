@@ -11,6 +11,7 @@
     ],
     "minimum-stability": "dev",
     "require": {
+        "php": "^7.2",
         "rixafy/language": "dev-master"
     },
     "autoload": {
