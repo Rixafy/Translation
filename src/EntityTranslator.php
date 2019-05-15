@@ -186,10 +186,8 @@ abstract class EntityTranslator
                         continue;
                     }
 
-                    // Keep this for snake_case compatibility until next release
-                    $camelKey = lcfirst(str_replace('_', '', ucwords($propertyName, '_')));
-                    if (isset($dataObject->{$camelKey})) {
-                        $value = $dataObject->{$camelKey};
+                    if (isset($dataObject->{$propertyName})) {
+                        $value = $dataObject->{$propertyName};
                         $property->setAccessible(true);
                         $property->setValue($translation, $value);
                     }
