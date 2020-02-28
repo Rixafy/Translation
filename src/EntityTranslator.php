@@ -186,11 +186,9 @@ abstract class EntityTranslator
                         continue;
                     }
 
-                    if (isset($dataObject->{$propertyName})) {
-                        $value = $dataObject->{$propertyName};
-                        $property->setAccessible(true);
-                        $property->setValue($translation, $value);
-                    }
+					$value = $dataObject->{$propertyName};
+					$property->setAccessible(true);
+					$property->setValue($translation, $value);
                 }
 
             } catch (ReflectionException $ignored) {
