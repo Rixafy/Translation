@@ -14,17 +14,12 @@ use Rixafy\Language\Language;
 use Rixafy\Language\LanguageStaticHolder;
 use Rixafy\Translation\Exception\TranslationNotFoundException;
 
-/**
- * @ORM\MappedSuperclass
- * @ORM\HasLifecycleCallbacks
- */
+#[ORM\MappedSuperclass]
+#[ORM\HasLifecycleCallbacks]
 abstract class EntityTranslator
 {
-    /**
-     * @ORM\ManyToOne(targetEntity="\Rixafy\Language\Language", inversedBy="entity")
-     * @var Language
-     */
-    protected $fallbackLanguage;
+	#[ORM\ManyToOne(targetEntity: Language::class, inversedBy: 'entity')]
+    protected ?Language $fallbackLanguage = null;
 
     /** @var object */
     protected $translation;
@@ -36,9 +31,9 @@ abstract class EntityTranslator
     protected $translationLanguage;
 
     /**
-     * @ORM\PostLoad
      * @throws LanguageNotProvidedException
      */
+	#[ORM\PostLoad]
     public function injectDefaultTranslation(): void
     {
         $language = LanguageStaticHolder::getLanguage();
